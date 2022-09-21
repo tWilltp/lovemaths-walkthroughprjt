@@ -1,4 +1,7 @@
-document.addEventListener('DOMContentLoaded', function()) {
+/**
+ * wait for the DOM to finish loading before running the game
+ */
+document.addEventListener('DOMContentLoaded', function() {
     
     let buttons = document.getElementsByTagName('button');
 
@@ -13,6 +16,12 @@ document.addEventListener('DOMContentLoaded', function()) {
         })
     }
 
+    document.getElementById('answer-box').addEventListener('keydown', function(event) {
+       if (event.key === "Enter") {
+        checkAnswer();
+       }
+    })
+
     runGame('addition')
 
 }
@@ -23,6 +32,9 @@ document.addEventListener('DOMContentLoaded', function()) {
  */
 
 function runGame (gameType) {
+
+    document.getElementById('answer-box').value = "";
+    document.getElementById('answer-box').focus();
 
     // creates 2 random numbers between 1 and 25
     let num1 = Math.floor(math.random() * 25) + 1;
